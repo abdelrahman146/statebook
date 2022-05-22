@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
     "keywords": [
         "state manager",
@@ -12,8 +12,8 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
-        "dist/*.{js,map,ts}",
-        "dist/**/*.{js,map,ts}",
+        "dist/*.{js,ts}",
+        "dist/**/*.{js,ts}",
         "readme.md"
     ],
     "author": {

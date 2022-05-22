@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { LocalStatebook, State, Status, StatusObject } from "../types";
+import { useState } from 'react';
+import { LocalStatebook, State, Status, StatusObject } from '../types';
 
 export function useLocalStatebook<T>(data?: T): LocalStatebook<T> {
     const [state, setState] = useState<State<T>>({ status: {}, data });
@@ -12,7 +12,7 @@ export function useLocalStatebook<T>(data?: T): LocalStatebook<T> {
                 if (s !== status) delete newStatus[s as keyof StatusObject];
             }
             newStatus[status] = value;
-            setState({ ...state, status: { ...newStatus } });
+            setState((state) => ({ ...state, status: { ...newStatus } }));
         },
         setData(data: T) {
             setState((state) => ({ ...state, data }));

@@ -1,5 +1,5 @@
-import { BehaviorSubject } from "rxjs";
-import { Statebook, State, Status, StatusObject } from "./types";
+import { BehaviorSubject } from 'rxjs';
+import { Statebook, State, Status, StatusObject } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const books: { [key: string]: BehaviorSubject<State<any>> } = {};

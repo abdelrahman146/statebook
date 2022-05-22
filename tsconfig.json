@@ -6,18 +6,9 @@
         "outDir": "dist",
         "module": "commonjs",
         "moduleResolution": "node",
-        "sourceMap": true,
-        "lib": [
-            "es2015",
-            "dom"
-        ],
+        "lib": ["es2015", "dom"],
         "rootDir": "src"
     },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+    "include": ["src"],
+    "exclude": ["node_modules", "dist"]
 }
