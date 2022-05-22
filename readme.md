@@ -185,7 +185,7 @@ Responsible of reading and interacting with the state
 | -- | -- | -- | -- |
 | **`state`** | return the state content of the state book | `{status:{}}` | -- |
 |**`asObservable()`** Only in Global State | returns an Observable instance of the state | -- | `Observable<State<T>>` |
-| **`setStatus(status: 'info'|'warning'|'success'|'success'|'error'|'loading',  value: string|boolean)`** | update the status of the statebook, **Note: it will toggle the status** | -- | -- |
+| **`setStatus(status: 'info'|'warning'|'success'|'success'|'error'|'loading', value: string|boolean)`** | update the status of the statebook, **Note: it will toggle the status** | `status:{}` | -- |
 | **`setData(data: T)`** | replaces the current data | `undefined` | -- |
 | **`setLoaded(flag: boolean)`** | replaces the current value of loaded | `undefined` | -- |
 | **`resetStatus()`** | reset the status object in statebook| -- | -- |
