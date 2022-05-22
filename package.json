@@ -1,10 +1,11 @@
 {
   "name": "statebook",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
   "keywords": ["state manager", "state", "react", "rxjs", "reactive"],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist/*.{js,ts}","dist/**/*.{js,ts}","readme.md"],
   "author": {
     "name": "Abdel Rahman Hussein",
     "email": "abdelrahman146@outlook.com"
