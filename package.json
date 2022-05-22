@@ -20,6 +20,10 @@
         "name": "Abdel Rahman Hussein",
         "email": "abdelrahman146@outlook.com"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/abdelrahman146/statebook.git"
+    },
     "license": "MIT",
     "devDependencies": {
         "@types/react": "^18.0.9",
