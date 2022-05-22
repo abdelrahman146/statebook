@@ -1,30 +1,40 @@
 {
-  "name": "statebook",
-  "version": "1.0.3",
-  "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
-  "keywords": ["state manager", "state", "react", "rxjs", "reactive"],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": ["dist/*.{js,ts}","dist/**/*.{js,ts}","readme.md"],
-  "author": {
-    "name": "Abdel Rahman Hussein",
-    "email": "abdelrahman146@outlook.com"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/react": "^18.0.9",
-    "@typescript-eslint/eslint-plugin": "^5.25.0",
-    "@typescript-eslint/parser": "^5.25.0",
-    "eslint": "^8.15.0",
-    "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-react-hooks": "^4.5.0",
-    "eslint-plugin-unicorn": "^42.0.0",
-    "ts-loader": "^9.3.0",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.4"
-  },
-  "dependencies": {
-    "react": "^18.1.0",
-    "rxjs": "^7.5.5"
-  }
+    "name": "statebook",
+    "version": "1.0.4",
+    "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
+    "keywords": [
+        "state manager",
+        "state",
+        "react",
+        "rxjs",
+        "reactive"
+    ],
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist/*.{js,map,ts}",
+        "dist/**/*.{js,map,ts}",
+        "readme.md"
+    ],
+    "author": {
+        "name": "Abdel Rahman Hussein",
+        "email": "abdelrahman146@outlook.com"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@types/react": "^18.0.9",
+        "@typescript-eslint/eslint-plugin": "^5.25.0",
+        "@typescript-eslint/parser": "^5.25.0",
+        "eslint": "^8.15.0",
+        "eslint-plugin-react": "^7.30.0",
+        "eslint-plugin-react-hooks": "^4.5.0",
+        "eslint-plugin-unicorn": "^42.0.0",
+        "ts-loader": "^9.3.0",
+        "ts-node": "^10.7.0",
+        "typescript": "^4.6.4"
+    },
+    "dependencies": {
+        "react": "^18.1.0",
+        "rxjs": "^7.5.5"
+    }
 }
