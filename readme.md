@@ -5,14 +5,23 @@ Fast :zap: , Reliable :dizzy:, Light and Incredibely Easy State Manager For Reac
 ### Features:
 
 :star: Straight Forward with zero setup needed. No need to instantiate anything or wrap the app with a root component or create actions and reducers.
+
 :star: Very easy to create/update/read states (local or global).
+
 :star: Every state has a status object by default that can holds the status of the object and important messages such as: Error, Success, Warning...
+
 :star: Uses react hooks.
+
 :star: Handles cleanup functions on its own.
+
 :star: States can be created/updated/read OUTSIDE react components.
+
 :star: States can await values from each other or subscribe to each other status outside react components.
+
 :star: Uses Rxjs in the background
+
 :star: Perfect for simple and complex applications.
+
 :star: Fast to learn.
 
 ## Getting Started
@@ -30,7 +39,7 @@ Statebook is built with typescript so it supports typings out of the box.
 
 just install the package in your project:
 
-```
+```bash
 npm i statebook
 
 # OR
@@ -42,7 +51,7 @@ yarn add statebook
 
 Example of creating and using Global State in a React App
 
-```
+```javascript
 import { useState } from 'react';
 import { useGlobalStatebook } from 'statebook';
 
@@ -90,7 +99,7 @@ export default App;
 
 Example of Creating a Local State in React App:
 
-```
+```javascript
 import { useState } from 'react';
 import { useLocalStatebook } from 'statebook';
 
@@ -128,7 +137,7 @@ export default App;
 
 Example of creating a global state outside react app:
 
-```
+```javascript
 import { statebook } from 'statebook';
 
 async function loginUser(username, password) {
@@ -155,7 +164,7 @@ statebook allows us to make a state await to another state until a certain value
 
 Optional: during the await period, you can make the state that is waiting synchronize its status with the other state. this is also useful to make our components to watch the status of only one of them.
 
-```
+```javascript
 async function fetchCart() {
     const cart = statebook('cart');
     const user = statebook('user');
@@ -184,8 +193,8 @@ Responsible of reading and interacting with the state
 | Property | Description | default Value | Return |
 | -- | -- | -- | -- |
 | **`state`** | return the state content of the state book | `{status:{}}` | -- |
-|**`asObservable()`** Only in Global State | returns an Observable instance of the state | -- | `Observable<State<T>>` |
-| **`setStatus(status: 'info'|'warning'|'success'|'success'|'error'|'loading', value: string|boolean)`** | update the status of the statebook, **Note: it will toggle the status** | `status:{}` | -- |
+| **`asObservable()`** Only in Global State | returns an Observable instance of the state | -- | `Observable<State<T>>` |
+| **`setStatus(status: string, value: string|boolean)`** | update the status of the statebook, **Note: it will toggle the status** | `status:{}` | -- |
 | **`setData(data: T)`** | replaces the current data | `undefined` | -- |
 | **`setLoaded(flag: boolean)`** | replaces the current value of loaded | `undefined` | -- |
 | **`resetStatus()`** | reset the status object in statebook| -- | -- |
