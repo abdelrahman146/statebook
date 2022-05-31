@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.10",
+    "version": "1.0.11",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
     "keywords": [
         "state manager",
@@ -38,7 +38,7 @@
         "typescript": "^4.6.4"
     },
     "dependencies": {
-        "react": "^16.8.0",
+        "react": "^17.0.2",
         "rxjs": "^7.5.5"
     }
 }
