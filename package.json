@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
     "keywords": [
         "state manager",
@@ -37,7 +37,7 @@
         "ts-node": "^10.7.0",
         "typescript": "^4.6.4"
     },
-    "peerDependencies": {
+    "dependencies": {
         "react": "^16.8.0",
         "rxjs": "^7.5.5"
     }
