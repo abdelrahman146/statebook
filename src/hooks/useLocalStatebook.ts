@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { LocalStatebook, State, Status, StatusObject } from '../types';
+import { Data, LocalStatebook, State, Status, StatusObject } from '../types';
 
-export function useLocalStatebook<T>(data?: T): LocalStatebook<T> {
-    const [state, setState] = useState<State<T>>({ status: {}, data });
+export function useLocalStatebook<T extends Data>(data?: T): LocalStatebook<T> {
+    const [state, setState] = useState<State<T>>({ status: {}, ...(data ? {data, loaded: true} : {}) });
 
     return {
         state,
@@ -14,8 +14,15 @@ export function useLocalStatebook<T>(data?: T): LocalStatebook<T> {
             newStatus[status] = value;
             setState((state) => ({ ...state, status: { ...newStatus } }));
         },
-        setData(data: T) {
-            setState((state) => ({ ...state, data }));
+        setData(value: Partial<T>) {
+            setState((state) => {
+                const nextState: State<T> = { ...state, data: {...state.data, ...value} } as State<T>;
+                if(nextState.data && Object.keys(nextState.data).length > 0) { return { ...nextState, loaded: true }}
+                return {...nextState, loaded: false};
+            });
+        },
+        isLoaded() {
+            return Boolean(state.loaded);
         },
         setLoaded(flag: boolean) {
             setState((state) => ({ ...state, loaded: flag }));

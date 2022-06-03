@@ -1,8 +1,8 @@
 import { first } from 'rxjs';
-import { Statebook, State } from '../types';
+import { Statebook, State, Data } from '../types';
 import { syncStatus } from './syncStatus';
 
-export function awaitStatebook<T, K>(statebook: Statebook<T>, condition: (state: State<T>) => boolean, syncstatus?: Statebook<K>): Promise<State<T>> {
+export function awaitStatebook<T extends Data, K extends Data>(statebook: Statebook<T>, condition: (state: State<T>) => boolean, syncstatus?: Statebook<K>): Promise<State<T>> {
     const sub = syncstatus ? syncStatus(statebook, syncstatus) : null;
     const state$ = statebook.asObservable();
 

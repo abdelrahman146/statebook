@@ -25,7 +25,6 @@ module.exports = {
     },
     plugins: ['react', '@typescript-eslint', 'react-hooks', 'unicorn'],
     rules: {
-        'newline-before-return': 'warn',
         'max-lines': ['warn', 350],
         'max-lines-per-function': ['warn', { max: 250, skipBlankLines: true, skipComments: true }],
         'max-depth': ['warn', 3],

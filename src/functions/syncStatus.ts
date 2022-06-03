@@ -1,7 +1,7 @@
 import { distinctUntilChanged, map, Subscription } from 'rxjs';
-import { Statebook } from '../types';
+import { Data, Statebook } from '../types';
 
-export function syncStatus<T, K>(from: Statebook<T>, to: Statebook<K>): Subscription {
+export function syncStatus<T extends Data, K extends Data>(from: Statebook<T>, to: Statebook<K>): Subscription {
     const from$ = from.asObservable();
     const subscription = from$
         .pipe(

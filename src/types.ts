@@ -1,6 +1,10 @@
 import { Observable } from 'rxjs';
 
-export type State<T = unknown> = {
+export type Data = {
+    [key: string]: unknown;
+}
+
+export type State<T extends Data> = {
     status: StatusObject;
     loaded?: boolean;
     data?: T;
@@ -16,20 +20,22 @@ export type StatusObject = {
 
 export type Status = 'info' | 'warning' | 'success' | 'success' | 'error' | 'loading';
 
-export type Statebook<T> = {
+export type Statebook<T extends Data> = {
     state: State<T>;
     asObservable: () => Observable<State<T>>;
     setStatus: (status: Status, value: string | boolean) => void;
-    setData: (data: T) => void;
+    setData: (data: Partial<T>) => void;
+    isLoaded: () => boolean;
     setLoaded: (flag: boolean) => void;
     resetStatus: () => void;
     flush: () => void;
 };
 
-export type LocalStatebook<T> = {
+export type LocalStatebook<T extends Data> = {
     state: State<T>;
     setStatus: (status: Status, value: string | boolean) => void;
-    setData: (data: T) => void;
+    setData: (data: Partial<T>) => void;
+    isLoaded: () => boolean;
     setLoaded: (flag: boolean) => void;
     resetStatus: () => void;
     flush: () => void;

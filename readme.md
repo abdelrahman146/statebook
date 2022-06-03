@@ -1,6 +1,6 @@
 # Statebook JS
 
-Fast :zap: , Reliable :dizzy:, Light and Incredibely Easy State Manager For React Built with Rxjs.
+Fast :zap: , Reliable :dizzy: , Light and Incredibely Easy State Manager For React Built with Rxjs.
 
 ### Features:
 
@@ -29,7 +29,7 @@ Fast :zap: , Reliable :dizzy:, Light and Incredibely Easy State Manager For Reac
 #### Compatbility
 
 -   Statebook can be used with any javascript / nodejs project. it is recommended to use Nodejs 12 or later.
--   Statebook is integrated with react apps out of the box. Tested versions: React 16.3 or later.
+-   Statebook is integrated with react apps out of the box. Tested versions: React 17.0.2 or later.
 
 #### TypeScript
 
@@ -195,7 +195,8 @@ Responsible of reading and interacting with the state
 | **`state`** | return the state content of the state book | `{status:{}}` | -- |
 | **`asObservable()`** Only in Global State | returns an Observable instance of the state | -- | `Observable<State<T>>` |
 | **`setStatus(status: string, value: string OR boolean)`** | update the status of the statebook, **Note: it will toggle the status** | `status:{}` | -- |
-| **`setData(data: T)`** | replaces the current data | `undefined` | -- |
+| **`setData(data: Partial<T>)`** | Takes new inputs on the data object and updates the state, it will also automatically toggle the field `loaded` based on the current data object | `undefined` | -- |
+| **`isLoaded()`** | returns the value of loaded (boolean) this value changes automatically with the data field, if null | undefined | empty object loaded field will be false, if object exists loaded will be true | `undefined` | boolean |
 | **`setLoaded(flag: boolean)`** | replaces the current value of loaded | `undefined` | -- |
 | **`resetStatus()`** | reset the status object in statebook| -- | -- |
 | **`flush()`** | returns statebook to initial state| -- | -- |
@@ -204,14 +205,14 @@ Responsible of reading and interacting with the state
 ### React Hooks
 | Hook | Description | Parameters | Return |
 | -- | -- | -- | -- |
-| **`useGlobalStatebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. Then it will initiate component update mechanism whenever a new value of the state is retrieved. | `id:  string` | `Statebook<T>`
+| **`useGlobalStatebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. Then it will initiate component update mechanism whenever a new value of the state is retrieved. if `data` parameter is passed, state manager will check if the statebook is not instantiated, it will use the passed data as an initial value. however, if the statebook already exists, it will ignore the parameter. | `id:  string, data?: T` | `Statebook<T>`
 | **`useLocalStatebook<T>`** | creates a new local statebook for the component, this statebook will reset when the component unmounts | `data?:  T` takes the initial value of the state data| `LocalStatebook<T>` |
 
 ### Functions
 
 | Function | Description | Parameters | Return |
 | -- | -- | -- | -- |
-| **`statebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. | `id: string` | `Statebook<T>` |
+| **`statebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. if `data` parameter is passed, state manager will check if the statebook is not instantiated, it will use the passed data as an initial value. however, if the statebook already exists, it will ignore the parameter. | `id: string, data?: T` | `Statebook<T>` |
 | **`awaitStatebook<T,  K>`** | waits another state until a condition is met. (example: value has been changed), if `syncstatus` parameter is provided it will synchronize its status automatically to the other statebook until the condition is met | `statebook: Statebook<T>, condition: (state: State<T>) => boolean, syncstatus?: Statebook<K>` | `Promise<State<T>>` |
 | **`syncStatus<T,  K>`** | synchronize the status from a state book to another | `from:  Statebook<T>,  to:  Statebook<K>` | `Subscription` from rxjs so you can unsubscribe later on |
 
