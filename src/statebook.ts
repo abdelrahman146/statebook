@@ -2,7 +2,11 @@ import { BehaviorSubject } from 'rxjs';
 import { Statebook, State, Status, StatusObject, Data } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const books: { [key: string]: BehaviorSubject<State<any>> } = {};
+let books: { [key: string]: BehaviorSubject<State<any>> } = {};
+
+export function resetStatebook() {
+    books = {};
+}
 
 export function statebook<T extends Data>(id: string): Statebook<T>;
 export function statebook<T extends Data>(id: string, data?: T): Statebook<T>;
