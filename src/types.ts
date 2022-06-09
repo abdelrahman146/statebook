@@ -1,8 +1,6 @@
 import { Observable } from 'rxjs';
 
-export type Data = {
-    [key: string]: unknown;
-}
+export type Data = object;
 
 export type State<T extends Data> = {
     status: StatusObject;

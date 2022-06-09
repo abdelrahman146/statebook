@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
     "keywords": [
         "state manager",
