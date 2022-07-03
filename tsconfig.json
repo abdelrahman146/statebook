@@ -1,14 +1,20 @@
 {
     "compilerOptions": {
-        "declaration": true,
-        "strictNullChecks": true,
-        "target": "es5",
-        "outDir": "dist",
-        "module": "commonjs",
         "moduleResolution": "node",
-        "lib": ["es2015", "dom"],
-        "rootDir": "src"
+        "module": "ESNext",
+        "target": "ES5",
+        "lib": ["ES2022", "DOM"],
+        "outDir": "dist/esm",
+        "strict": true,
+        "jsx": "react",
+        "declaration": true,
+        "declarationMap": true,
+        "declarationDir": "dist/types",
+        "sourceMap": true,
+        "stripInternal": true,
+        "strictNullChecks": true,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "importHelpers": true,
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist"]
 }

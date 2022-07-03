@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.16",
+    "version": "1.0.17",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager Built with Rxjs",
     "keywords": [
         "state manager",
@@ -9,13 +9,8 @@
         "rxjs",
         "reactive"
     ],
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "files": [
-        "dist/*.{js,ts}",
-        "dist/**/*.{js,ts}",
-        "readme.md"
-    ],
+    "main": "dist/bundles/statebook.min.js",
+    "module": "dist/esm/index.js",
     "author": {
         "name": "Abdel Rahman Hussein",
         "email": "abdelrahman146@outlook.com"
@@ -24,8 +19,12 @@
         "type": "git",
         "url": "https://github.com/abdelrahman146/statebook.git"
     },
+    "scripts": {
+        "build": "shx rm -rf dist && tsc && webpack"
+    },
     "license": "MIT",
     "devDependencies": {
+        "@types/node": "^18.0.0",
         "@types/react": "^18.0.9",
         "@typescript-eslint/eslint-plugin": "^5.25.0",
         "@typescript-eslint/parser": "^5.25.0",
@@ -33,9 +32,14 @@
         "eslint-plugin-react": "^7.30.0",
         "eslint-plugin-react-hooks": "^4.5.0",
         "eslint-plugin-unicorn": "^42.0.0",
-        "ts-loader": "^9.3.0",
+        "prettier": "^2.7.1",
+        "shx": "^0.3.4",
+        "terser-webpack-plugin": "^5.3.3",
+        "ts-loader": "^9.3.1",
         "ts-node": "^10.7.0",
-        "typescript": "^4.6.4"
+        "typescript": "^4.6.4",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.10.0"
     },
     "dependencies": {
         "react": "^17.0.2",
