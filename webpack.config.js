@@ -8,7 +8,7 @@ module.exports = {
         'statebook.min': './src/index.ts'
     },
     output: {
-        path: path.resolve(__dirname, 'dist/bundles'),
+        path: path.resolve(__dirname, 'dist/bundle'),
         filename: '[name].js',
         libraryTarget: 'umd',
         library: 'Statebook',

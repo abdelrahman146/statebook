@@ -9,8 +9,9 @@
         "rxjs",
         "reactive"
     ],
-    "main": "dist/bundles/statebook.min.js",
+    "main": "dist/bundle/statebook.min.js",
     "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
     "author": {
         "name": "Abdel Rahman Hussein",
         "email": "abdelrahman146@outlook.com"
@@ -24,8 +25,8 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "^18.0.0",
-        "@types/react": "^18.0.9",
+        "@types/node": ">=18.0.0",
+        "@types/react": ">=18.0.9",
         "@typescript-eslint/eslint-plugin": "^5.25.0",
         "@typescript-eslint/parser": "^5.25.0",
         "eslint": "^8.15.0",
@@ -41,8 +42,8 @@
         "webpack": "^5.73.0",
         "webpack-cli": "^4.10.0"
     },
-    "dependencies": {
-        "react": "^17.0.2",
-        "rxjs": "^7.5.5"
+    "peerDependencies": {
+        "react": ">=17.0.2",
+        "rxjs": ">=7.5.5"
     }
 }

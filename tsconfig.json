@@ -17,4 +17,5 @@
         "resolveJsonModule": true,
         "importHelpers": true,
     },
+    "exclude": ["example"]
 }
