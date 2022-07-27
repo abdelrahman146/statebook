@@ -43,7 +43,9 @@
         "webpack-cli": "^4.10.0"
     },
     "peerDependencies": {
-        "react": ">=17.0.2",
-        "rxjs": ">=7.5.5"
+        "react": ">=17.0.2"
+    },
+    "dependencies": {
+        "rxjs": "^7.5.6"
     }
 }

@@ -5,7 +5,7 @@ export type Data = object;
 export type State<T extends Data> = {
     status: StatusObject;
     loaded?: boolean;
-    data?: T;
+    data: T;
 };
 
 export type StatusObject = {
@@ -38,3 +38,8 @@ export type LocalStatebook<T extends Data> = {
     resetStatus: () => void;
     flush: () => void;
 };
+
+
+export type StatebookFactoryOptions = {
+    cookie?: boolean;
+}
