@@ -10,6 +10,7 @@
     "main": "dist/bundle/statebook.min.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
+    "type": "module",
     "author": {
         "name": "Abdel Rahman Hussein",
         "email": "abdelrahman146@outlook.com"
@@ -19,6 +20,7 @@
         "url": "https://github.com/abdelrahman146/statebook.git"
     },
     "scripts": {
+        "start": "node --experimental-specifier-resolution=node --loader ts-node/esm src/index.ts",
         "build": "shx rm -rf dist && tsc && webpack"
     },
     "license": "MIT",

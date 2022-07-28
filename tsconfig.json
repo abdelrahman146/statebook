@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "moduleResolution": "node",
         "module": "ESNext",
-        "target": "ES5",
+        "target": "ES6",
         "lib": ["ES2022", "DOM"],
         "outDir": "dist/esm",
         "strict": true,
@@ -15,7 +16,7 @@
         "strictNullChecks": true,
         "removeComments": true,
         "resolveJsonModule": true,
-        "importHelpers": true,
+        "importHelpers": true
     },
-    "exclude": ["example"]
+    "exclude": ["example", "dist"]
 }
