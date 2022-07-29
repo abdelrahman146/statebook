@@ -37,13 +37,11 @@ export class TopicArray<T> extends Topic<Array<T>> {
     }
 
     pop() {
-        this.state.splice;
-        // TODO
+        this.state = [...this.state.slice(0, -1)];
     }
 
     shift() {
-        const [_first, ...rest] = this.state;
-        this.state = rest;
+        this.state = [...this.state.slice(1)];
     }
 
     unshift(...items: T[]) {
