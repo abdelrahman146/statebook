@@ -1,35 +1,36 @@
 import { Status, Subscription } from './types';
+import { createKey } from './utils';
 
-export abstract class Topic<T> {
-    private subs: Subscription<T>[] = [];
-    private _status: Status = {};
+export abstract class Topic<T = any> {
+    private subs: { [subKey: string]: Subscription<T> } = {};
+    private status: Status = {};
     private init: T;
 
-    constructor(private _state: T) {
-        this.init = _state;
+    constructor(protected state: T) {
+        this.init = state;
     }
 
-    get state() {
-        return this._state;
+    getState(): T {
+        return JSON.parse(JSON.stringify(this.state));
     }
 
-    set state(state: T) {
-        if (state === this._state) return;
-        this._state = state;
+    setState(state: T) {
+        if (state === this.state) return;
+        this.state = state;
         this.publish();
     }
 
-    get status() {
-        return this._status;
+    getStatus() {
+        return Object.freeze(this.status);
     }
 
     setStatus(status: keyof Status, value: string | boolean) {
-        this._status = { [status]: value };
+        this.status = { [status]: value };
         this.publish();
     }
 
     resetStatus() {
-        this._status = {};
+        this.status = {};
     }
 
     reset() {
@@ -39,18 +40,19 @@ export abstract class Topic<T> {
 
     subscribe(sub: Subscription<T>) {
         sub(this.state, this.status);
-        this.subs.push(sub);
-
-        return { unsubscribe: () => this.unsubscribe(sub) };
+        this.subs;
+        const subKey = createKey();
+        this.subs[subKey] = sub;
+        return { unsubscribe: () => this.unsubscribe(subKey) };
     }
 
-    private unsubscribe(sub: Subscription<T>) {
-        this.subs.filter((subscription) => subscription !== sub);
+    private unsubscribe(subKey: string) {
+        delete this.subs[subKey];
     }
 
     private publish() {
-        for (const sub of this.subs) {
-            sub(this.state, this.status);
+        for (const key in this.subs) {
+            this.subs[key](this.getState(), this.getStatus());
         }
     }
 

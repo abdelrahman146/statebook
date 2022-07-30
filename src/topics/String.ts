@@ -1,35 +1,35 @@
 import { Topic } from '../Topic';
 
-export class TopicString extends Topic<string> {
+export default class TopicString extends Topic<string> {
     replace(searchValue: string | RegExp, replaceValue: string) {
-        this.state = this.state.replace(searchValue, replaceValue);
+        this.setState(this.state.replace(searchValue, replaceValue));
     }
 
     concat(...strings: string[]) {
-        this.state = this.state.concat(...strings);
+        this.setState(this.state.concat(...strings));
     }
 
     slice(start?: number | undefined, end?: number | undefined) {
-        this.state = this.state.slice(start, end);
+        this.setState(this.state.slice(start, end));
     }
 
     toLowerCase() {
-        this.state = this.state.toLowerCase();
+        this.setState(this.state.toLowerCase());
     }
 
     toUpperCase() {
-        this.state = this.state.toUpperCase();
+        this.setState(this.state.toUpperCase());
     }
 
     trim() {
-        this.state = this.state.trim();
+        this.setState(this.state.trim());
     }
 
     trimStart() {
-        this.state = this.state.trimStart();
+        this.setState(this.state.trimStart());
     }
 
     trimEnd() {
-        this.state = this.state.trimEnd();
+        this.setState(this.state.trimEnd());
     }
 }

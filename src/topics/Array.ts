@@ -1,50 +1,49 @@
 import { Topic } from '../Topic';
 
-export class TopicArray<T> extends Topic<Array<T>> {
+export default class TopicArray<T> extends Topic<Array<T>> {
     push(...items: T[]) {
-        this.state = [...this.state, ...items];
+        this.setState([...this.state, ...items]);
     }
 
     concat(...items: ConcatArray<T>[]) {
-        this.state = this.state.concat(...items);
-        this.state.filter;
+        this.setState(this.state.concat(...items));
     }
 
     fill(value: T, start?: number, end?: number) {
-        this.state = this.state.fill(value, start, end);
+        this.setState(this.state.fill(value, start, end));
     }
 
     filter<S extends T>(predicate: (value: T, index: number, array: T[]) => value is S) {
-        this.state = this.state.filter(predicate);
+        this.setState(this.state.filter(predicate));
     }
 
     slice(start?: number, end?: number) {
-        this.state = [...this.state.slice(start, end)];
+        this.setState((this.state = [...this.state.slice(start, end)]));
     }
 
     splice(start: number, deleteCount?: number): void;
     splice(start: number, deleteCount: number, ...items: T[]): void;
     splice(start: number, deleteCount: number, ...items: T[]) {
-        this.state = [...this.state.splice(start, deleteCount, ...items)];
+        this.setState([...this.state.splice(start, deleteCount, ...items)]);
     }
 
     sort(compareFn?: (a: T, b: T) => number) {
-        this.state = [...this.state.sort(compareFn)];
+        this.setState([...this.state.sort(compareFn)]);
     }
 
     reverse() {
-        this.state = [...this.state.reverse()];
+        this.setState([...this.state.reverse()]);
     }
 
     pop() {
-        this.state = [...this.state.slice(0, -1)];
+        this.setState([...this.state.slice(0, -1)]);
     }
 
     shift() {
-        this.state = [...this.state.slice(1)];
+        this.setState([...this.state.slice(1)]);
     }
 
     unshift(...items: T[]) {
-        this.state = [...items, ...this.state];
+        this.setState([...items, ...this.state]);
     }
 }
