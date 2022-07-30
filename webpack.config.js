@@ -1,21 +1,21 @@
 const path = require('path');
-const TerserPlugin = require("terser-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
     entry: {
-        'statebook': './src/index.ts',
-        'statebook.min': './src/index.ts'
+        statebook: './src/index.ts',
+        'statebook.min': './src/index.ts',
     },
     output: {
         path: path.resolve(__dirname, 'dist/bundle'),
         filename: '[name].js',
         libraryTarget: 'umd',
         library: 'Statebook',
-        umdNamedDefine: true
+        umdNamedDefine: true,
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     devtool: 'source-map',
     optimization: {
@@ -28,7 +28,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/,
-            }
-        ]
-    }
-}
+            },
+        ],
+    },
+};

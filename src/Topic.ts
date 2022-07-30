@@ -1,10 +1,10 @@
 import { Status, Subscription } from './types';
-import { createKey } from './utils';
 
 export abstract class Topic<T = any> {
-    private subs: { [subKey: string]: Subscription<T> } = {};
+    private subs: { [subKey: number]: Subscription<T> } = {};
     private status: Status = {};
     private init: T;
+    private index = 0;
 
     constructor(protected state: T) {
         this.init = state;
@@ -41,12 +41,12 @@ export abstract class Topic<T = any> {
     subscribe(sub: Subscription<T>) {
         sub(this.state, this.status);
         this.subs;
-        const subKey = createKey();
+        const subKey = this.index++;
         this.subs[subKey] = sub;
         return { unsubscribe: () => this.unsubscribe(subKey) };
     }
 
-    private unsubscribe(subKey: string) {
+    private unsubscribe(subKey: number) {
         delete this.subs[subKey];
     }
 

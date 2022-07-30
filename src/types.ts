@@ -1,3 +1,5 @@
+import { Topic } from './Topic';
+
 export type Subscription<T> = (state: T, status: Status) => void;
 export type Status = {
     info?: string | boolean;
@@ -6,3 +8,5 @@ export type Status = {
     success?: string | boolean;
     loading?: string | boolean;
 };
+
+export type GetTopicType<T> = T extends Topic<infer Type> ? Type : T;
