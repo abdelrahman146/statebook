@@ -2,7 +2,7 @@ import './App.css';
 import { statebook } from './lib/statebook';
 
 function App() {
-    const [user, userTopic] = statebook.useTopic('user');
+    const [user, userStatus, userTopic] = statebook.useTopic('user');
 
     return (
         <div className="app">
