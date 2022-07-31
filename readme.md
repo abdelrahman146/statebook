@@ -71,7 +71,10 @@ export default App;
 ```
 
 ## Master Statebook with 3 steps! ✨
+<<<<<<< HEAD
 ---
+=======
+>>>>>>> 9827e8f7700f69198d12c751f25f2c220b718888
 
 > **Step 1️⃣**: Create Statebook Instance
 ```typescript
