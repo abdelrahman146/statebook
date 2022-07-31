@@ -71,10 +71,6 @@ export default App;
 ```
 
 ## Master Statebook with 3 steps! ✨
-<<<<<<< HEAD
----
-=======
->>>>>>> 9827e8f7700f69198d12c751f25f2c220b718888
 
 > **Step 1️⃣**: Create Statebook Instance
 ```typescript
@@ -176,7 +172,7 @@ const statebook = StatebookFactory({
 - [ ] Linked List (in progress)
 
 ## Creating Custom Topics
-Custom Topics can be created by creating a class for and extending the Topic abstract class
+Custom Topics can be created by creating a class and extending the Topic abstract class
 
 ```TypeScript
 import {Topic} from 'statebook';
