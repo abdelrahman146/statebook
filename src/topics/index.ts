@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/no-new-array */
 import { default as Array } from './Array';
 import { default as String } from './String';
 import { default as Number } from './Number';

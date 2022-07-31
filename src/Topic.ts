@@ -1,23 +1,32 @@
 import { Status, Subscription } from './types';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 export abstract class Topic<T = any> {
     private subs: { [subKey: number]: Subscription<T> } = {};
     private status: Status = {};
     private init: T;
     private index = 0;
 
-    constructor(protected state: T) {
+    constructor(private state: T) {
         this.init = state;
     }
 
-    getState(): T {
+    get(): T {
         return cloneDeep(this.state);
     }
 
-    setState(state: T) {
-        if (state === this.state) return;
-        this.state = state;
-        this.publish();
+    set(state: T): void;
+    set(fn: (state: T) => T): void;
+    set(arg: T | ((state: T) => T)): void {
+        let newState: T;
+        if (typeof arg === 'function') {
+            const fn = arg as (state: T) => T;
+            newState = fn(this.get());
+        } else {
+            newState = arg;
+        }
+        if (isEqual(newState, this.state)) return;
+        this.state = newState;
+        this.next();
     }
 
     getStatus() {
@@ -26,7 +35,7 @@ export abstract class Topic<T = any> {
 
     setStatus(status: keyof Status, value: string | boolean) {
         this.status = { [status]: value };
-        this.publish();
+        this.next();
     }
 
     resetStatus() {
@@ -50,9 +59,9 @@ export abstract class Topic<T = any> {
         delete this.subs[subKey];
     }
 
-    private publish() {
+    private next() {
         for (const key in this.subs) {
-            this.subs[key](this.getState(), this.getStatus());
+            this.subs[key](this.get(), this.getStatus());
         }
     }
 

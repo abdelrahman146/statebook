@@ -3,7 +3,7 @@ import { Topic } from '../Topic';
 import { GetTopicType, Status } from '../types';
 
 export function useTopic<T extends Topic>(topic: T): [GetTopicType<T>, Status] {
-    const [state, setState] = useState<GetTopicType<T>>(topic.getState());
+    const [state, setState] = useState<GetTopicType<T>>(topic.get());
     const [status, setStatus] = useState<Status>(topic.getStatus());
 
     useEffect(() => {

@@ -1,41 +1,32 @@
 # Statebook JS
+Stateful Data Structures for React
 
-Fast :zap: , Reliable :dizzy: , Light and Incredibely Easy State Manager For React Built with Rxjs.
+## Introduction
+Statebook is a lightweight, easy to use, loaded with features and extensible state manager built with TypesScript for React Apps ⚛️
 
-### Features:
+Statebook Topics (States) use the observer pattern in the background to let functions subscribe and unsubscribe for state updates.
 
-:star: Straight Forward with zero setup needed. No need to instantiate anything or wrap the app with a root component or create actions and reducers.
+Topics are stateful data structures where each topic comes with a set of handy methods that can update the state with ease. In addition, each Topic has a status object (Ex: Error :x:, Success ✅, Info ℹ️, warning ❗, and loading :clock1:), subscribed functions can receive the status of the object too.
 
-:star: Very easy to create/update/read states (local or global).
-
-:star: Every state has a status object by default that can holds the status of the object and important messages such as: Error, Success, Warning...
-
-:star: Uses react hooks.
-
-:star: Handles cleanup functions on its own.
-
-:star: States can be created/updated/read OUTSIDE react components.
-
-:star: States can await values from each other or subscribe to each other status outside react components.
-
-:star: Uses Rxjs in the background
-
-:star: Perfect for simple and complex applications.
-
-:star: Fast to learn.
+|:star:| Statebook Features |
+|--|--|
+| 🔹 | Easy to use and Lightweight |
+| 🔹 | Built-in react hooks |
+| 🔹 | Stateful Data Structures |
+| 🔹 | Each Topic has a status (Error, Success, Warning, Info) |
+| 🔹 | Topics can be subscribed to, updated and created OUTSIDE React Components |
+| 🔹 | Fast Learning curve |
 
 ## Getting Started
+> **Compatbility**
+- Can be used with ES and CommonJS Modules. 
+-   Supports React 17.0.2 or later.
 
-#### Compatbility
-
--   Statebook can be used with any javascript / nodejs project. it is recommended to use Nodejs 12 or later.
--   Statebook is integrated with react apps out of the box. Tested versions: React 17.0.2 or later.
-
-#### TypeScript
+> **TypeScript**
 
 Statebook is built with typescript so it supports typings out of the box.
 
-#### Installation
+> **Installation**
 
 just install the package in your project:
 
@@ -47,49 +38,31 @@ npm i statebook
 yarn add statebook
 ```
 
-## Usage:
+## Usage
 
-Example of creating and using Global State in a React App
+How to use statebook in a react app;
 
 ```javascript
-import { useState } from 'react';
-import { useGlobalStatebook } from 'statebook';
+import { StatebookFactory, Topics } from 'statebook';
+
+// create new statebook
+const statebook = StatebookFactory({
+  counter: Topics.Number(0), // add topic to statebook
+});
+
+// increase counter every second
+setInterval(() => {
+  const {counter} = statebook;
+  counter.set((totalCount) => totalCount + 1);
+}, [1000])
 
 function App() {
-  const user = useGlobalStatebook('user');// returns a state with id: 'user' if state doesn't exist it will create new one.
-  const [username, setusername] = useState('');
-  const [password, setpassword] = useState('');
-
-  const handleLogin = () => {
-    if (!username || !password) return;
-    user.setData({ username, password });
-    user.setLoaded(true);
-  };
+  const [ totalCount ] = statebook.useTopic('counter');
 
   return (
     <div>
-      <h1>First Component</h1>
-      <input type="text" name="username" placeholder="username" value={username} onChange={(e) => setusername(e.target.value)} />
-      <input type="password" name="password" placeholder="password" value={password} onChange={(e) => setpassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-      <br />
-      <UserComponent />
-    </div>
-  );
-}
-
-function UserComponent() {
-  const user = useGlobalStatebook('user');
-
-  return (
-    <div>
-      <h1>Second Component</h1>
-      {user.state.loaded && (
-        <div>
-          <p>username: {user.state.data.username}</p>
-          <p>password: {user.state.data.password}</p>
-        </div>
-      )}
+      <h1>The Counter will Increase every second</h1>
+      <p>total counts: {totalCount}</p>
     </div>
   );
 }
@@ -97,124 +70,133 @@ function UserComponent() {
 export default App;
 ```
 
-Example of Creating a Local State in React App:
+## Master Statebook with 3 steps! ✨
+---
 
-```javascript
-import { useState } from 'react';
-import { useLocalStatebook } from 'statebook';
-
-function App() {
-  const counter = useLocalStatebook({ totalcount: 0 }); // creates a state with the given initial value.
-  const [input, setinput] = useState('');
-
-  const handleButton = () => {
-    const number = Number(input);
-    if (!number) {
-      counter.setStatus('error', 'Input is not valid');
-      return;
-    }
-    const newTotalCount = counter.state.data.totalcount + number;
-    counter.setData({ totalcount: newTotalCount });
-    counter.setStatus('success', 'Successfully add ' + number + ' to total count');
-  };
-
-  return (
-    <div>
-      <h1>Counter</h1>
-      <input type="text" name="number" placeholder="number" value={input} onChange={(e) => setinput(e.target.value)} />
-      <button onClick={handleButton}>ADD Input</button>
-      <br />
-      <h4>Total Count: {counter.state.data.totalcount}</h4>
-      <br />
-      {counter.state.status.error && <p style={{ color: 'red' }}>{counter.state.status.error}</p>}
-      {counter.state.status.success && <p style={{ color: 'green' }}>{counter.state.status.success}</p>}
-    </div>
-  );
-}
-
-export default App;
+> **Step 1️⃣**: Create Statebook Instance
+```typescript
+// create new statebook
+const statebook = StatebookFactory({
+  user: Topics.Object({
+    name: 'Jhon Smith',
+    age: 34
+  }),
+  posts: Topics.Array<{slug: string; title: string; body?: string}>([])
+});
 ```
 
-Example of creating a global state outside react app:
+> **Step :two:**: Create Services
+```typescript
 
-```javascript
-import { statebook } from 'statebook';
-
-async function loginUser(username, password) {
-  const user = statebook('user'); // returns a state with id:'user' if not exist it will create a new one.
-  user.setStatus('loading', true);
+export async function getPosts() {
+  statebook.posts.setStatus('loading' , 'Loading Posts');
   try {
-    const response = await fetch('<website>/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-    });
-    user.setData(response);
-    user.setLoaded(true);
-  } catch (error) {
-    user.setStatus('error', 'something went wrong');
-  } finally {
-    user.resetStatus();
+    const posts = await // fetch posts from endpoint
+    statebook.posts.setStatus('success' , 'Loaded Posts Successfully');
+    statebook.posts.set(posts);
+  } catch {
+    statebook.posts.setStatus('error' , 'Failed to load Posts');
+  }
+}
+```
+
+> **Step :three:**: Create Subscribers
+
+Inside React Components:
+```typescript
+// inside react components
+function App() {
+  const [ user ] = statebook.useTopic('user');
+  const [posts, postsStatus] = statebook.useTopic('posts');
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+  {/* Note: One status will be available at a time */}
+  return (
+    <div>
+      <h1>Hi, {user.name}</h1>
+      <h3>Posts List</h3>
+      {postsStatus.loading && <p style={{color: gray}}>{postsStatus.loading}</p>}
+      {postsStatus.error && <p style={{color: red}}>{postsStatus.error}</p>}
+      {postsStatus.success && <p style={{color: green}}>{postsStatus.success}</p>}
+      <div style={{marginTop: 10}}>
+        {posts.map((post) => {
+          <div key={post.slug}>
+            <h4>{post.title}</h4>
+            <p>{post.body}</p>
+          </div>
+        })}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+Outside React Components:
+```typescript
+
+// log list updates
+statebook.posts.subscribe((list, status) => {
+  console.log({list, status})
+})
+
+// inside react components
+function App() {
+  //...
+```
+
+> That's It!! :confetti_ball:
+
+## Built-in Stateful Topics (DataTypes / Data Structures)
+
+The following are the built-in topics that you can use immediatly in statebook. they can be created from  `Topics`
+
+```typescript
+import {StatebookFactory, Topics} from 'statebook';
+
+const statebook = StatebookFactory({
+  language: Topics.String('en'); // string
+})
+```
+
+- [X] String
+- [X] Number
+- [X] Arrays
+- [X] Objects / HashMaps
+- [ ] Stacks (in progress)
+- [ ] Queues (in progress)
+- [ ] Linked List (in progress)
+
+## Creating Custom Topics
+Custom Topics can be created by creating a class for and extending the Topic abstract class
+
+```TypeScript
+import {Topic} from 'statebook';
+
+class BinarySearchTree<T> {
+  insert(val: T) {
+    const node = new Node(val);
+    // logic
+    return node;
+  }
+  find() {
+    // logic
   }
 }
 
-// you can then use useGlobalStateBook('user') to read the information related to the state inside a a react component.
-```
-
-statebook allows us to make a state await to another state until a certain value is met. this is usefull when we have a state that depends on a value from another state.
-
-Optional: during the await period, you can make the state that is waiting synchronize its status with the other state. this is also useful to make our components to watch the status of only one of them.
-
-```javascript
-async function fetchCart() {
-    const cart = statebook('cart');
-    const user = statebook('user');
-    const { apikey }  = await awaitStatebook(user, ({loaded}) => loaded, cart); // since we have provided the function with our cart space in the third parameter. now cart status will synchronzie with user status until the condition is met.
-    try {
-        user.setStatus('loading', 'Fetching cart items');
-        const response = await fetch('<website>/cart', {
-            method: 'POST',
-            headers: {Authorization: apikey}
-        });
-        cart.setData(response);
-        cart.setLoaded(true);
-    } catch (error) {
-        cart.setStatus('error', 'something went wrong');
-    } finally {
-        cart.resetStatus();
-    }
+export class BinarySearchTreeTopic<T> extends Topic<BinarySearchTree<T>> {
+  insert(value: T) {
+    // set last inserted node in the state to trigger update
+    this.set((state) => state.insert(value)) 
+  }
 }
 ```
 
-## API Reference
-
-### Statebook
-Responsible of reading and interacting with the state
-
-| Property | Description | default Value | Return |
-| -- | -- | -- | -- |
-| **`state`** | return the state content of the state book | `{status:{}}` | -- |
-| **`asObservable()`** Only in Global State | returns an Observable instance of the state | -- | `Observable<State<T>>` |
-| **`setStatus(status: string, value: string OR boolean)`** | update the status of the statebook, **Note: it will toggle the status** | `status:{}` | -- |
-| **`setData(data: Partial<T>)`** | Takes new inputs on the data object and updates the state, it will also automatically toggle the field `loaded` based on the current data object | `undefined` | -- |
-| **`isLoaded()`** | returns the value of loaded (boolean) this value changes automatically with the data field, if null | undefined | empty object loaded field will be false, if object exists loaded will be true | `undefined` | boolean |
-| **`setLoaded(flag: boolean)`** | replaces the current value of loaded | `undefined` | -- |
-| **`resetStatus()`** | reset the status object in statebook| -- | -- |
-| **`flush()`** | returns statebook to initial state| -- | -- |
-
-
-### React Hooks
-| Hook | Description | Parameters | Return |
-| -- | -- | -- | -- |
-| **`useGlobalStatebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. Then it will initiate component update mechanism whenever a new value of the state is retrieved. if `data` parameter is passed, state manager will check if the statebook is not instantiated, it will use the passed data as an initial value. however, if the statebook already exists, it will ignore the parameter. | `id:  string, data?: T` | `Statebook<T>`
-| **`useLocalStatebook<T>`** | creates a new local statebook for the component, this statebook will reset when the component unmounts | `data?:  T` takes the initial value of the state data| `LocalStatebook<T>` |
-
-### Functions
-
-| Function | Description | Parameters | Return |
-| -- | -- | -- | -- |
-| **`statebook<T>`** | Looks for an existing state with the provided id if not found, it will create a new one. if `data` parameter is passed, state manager will check if the statebook is not instantiated, it will use the passed data as an initial value. however, if the statebook already exists, it will ignore the parameter. | `id: string, data?: T` | `Statebook<T>` |
-| **`awaitStatebook<T,  K>`** | waits another state until a condition is met. (example: value has been changed), if `syncstatus` parameter is provided it will synchronize its status automatically to the other statebook until the condition is met | `statebook: Statebook<T>, condition: (state: State<T>) => boolean, syncstatus?: Statebook<K>` | `Promise<State<T>>` |
-| **`syncStatus<T,  K>`** | synchronize the status from a state book to another | `from:  Statebook<T>,  to:  Statebook<K>` | `Subscription` from rxjs so you can unsubscribe later on |
 
 ## Maintainer
 [Abdel Rahman Hussein](https://github.com/abdelrahman146)
