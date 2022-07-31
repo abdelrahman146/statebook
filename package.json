@@ -1,6 +1,6 @@
 {
     "name": "statebook",
-    "version": "1.0.17",
+    "version": "1.1.0",
     "description": "Fast, Reliable, Light and Incredibely Easy State Manager. Stateful Data Structures for React",
     "keywords": [
         "state manager",
