@@ -1,11 +1,20 @@
 {
     "name": "statebook",
     "version": "1.0.17",
-    "description": "Fast, Reliable, Light and Incredibely Easy State Manager",
+    "description": "Fast, Reliable, Light and Incredibely Easy State Manager. Stateful Data Structures for React",
     "keywords": [
         "state manager",
         "state",
-        "reactive"
+        "reactive",
+        "stateful data types",
+        "statebook",
+        "data structure",
+        "topics",
+        "pub/sub",
+        "publish",
+        "subscribe",
+        "observable",
+        "observer"
     ],
     "main": "dist/bundle/statebook.min.js",
     "module": "dist/esm/index.js",
