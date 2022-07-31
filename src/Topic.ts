@@ -1,5 +1,5 @@
 import { Status, Subscription } from './types';
-
+import { cloneDeep } from 'lodash';
 export abstract class Topic<T = any> {
     private subs: { [subKey: number]: Subscription<T> } = {};
     private status: Status = {};
@@ -11,7 +11,7 @@ export abstract class Topic<T = any> {
     }
 
     getState(): T {
-        return JSON.parse(JSON.stringify(this.state));
+        return cloneDeep(this.state);
     }
 
     setState(state: T) {
