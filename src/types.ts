@@ -1,40 +1,12 @@
-import { Observable } from 'rxjs';
+import { Topic } from './Topic';
 
-export type Data = object;
-
-export type State<T extends Data> = {
-    status: StatusObject;
-    loaded?: boolean;
-    data?: T;
+export type Subscription<T> = (state: T, status: Status) => void;
+export type Status = {
+    info?: string | boolean;
+    warning?: string | boolean;
+    error?: string | boolean;
+    success?: string | boolean;
+    loading?: string | boolean;
 };
 
-export type StatusObject = {
-    info?: boolean | string;
-    warning?: boolean | string;
-    success?: boolean | string;
-    error?: boolean | string;
-    loading?: boolean | string;
-};
-
-export type Status = 'info' | 'warning' | 'success' | 'success' | 'error' | 'loading';
-
-export type Statebook<T extends Data> = {
-    state: State<T>;
-    asObservable: () => Observable<State<T>>;
-    setStatus: (status: Status, value: string | boolean) => void;
-    setData: (data: Partial<T>) => void;
-    isLoaded: () => boolean;
-    setLoaded: (flag: boolean) => void;
-    resetStatus: () => void;
-    flush: () => void;
-};
-
-export type LocalStatebook<T extends Data> = {
-    state: State<T>;
-    setStatus: (status: Status, value: string | boolean) => void;
-    setData: (data: Partial<T>) => void;
-    isLoaded: () => boolean;
-    setLoaded: (flag: boolean) => void;
-    resetStatus: () => void;
-    flush: () => void;
-};
+export type GetTopicType<T> = T extends Topic<infer Type> ? Type : T;

@@ -37,5 +37,7 @@ module.exports = {
         'react/prop-types': 'off',
         'react-hooks/exhaustive-deps': 'off',
         'unicorn/prefer-node-protocol': 'off',
+        'unicorn/prefer-spread': 'off',
+        'unicorn/no-array-callback-reference': 'off',
     },
 };

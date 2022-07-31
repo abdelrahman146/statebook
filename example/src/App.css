@@ -1,0 +1,26 @@
+body {
+  background-color: azure;
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  font-weight: 300;
+  color: #333;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.box {
+  background: white;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 5em;
+}

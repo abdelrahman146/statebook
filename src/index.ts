@@ -1,4 +1,4 @@
+export { Topics } from './topics';
+export { StatebookFactory } from './Statebook';
+export { Topic } from './Topic';
 export * from './types';
-export * from './statebook';
-export * from './hooks';
-export * from './functions';
