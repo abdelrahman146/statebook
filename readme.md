@@ -70,7 +70,7 @@ function App() {
 export default App;
 ```
 
-## Master Statebook with 3 steps! ✨
+## Master Statebook in 3 steps! ✨
 
 > **Step 1️⃣**: Create Statebook Instance
 ```typescript
