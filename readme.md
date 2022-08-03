@@ -54,7 +54,7 @@ const statebook = StatebookFactory({
 setInterval(() => {
   const {counter} = statebook;
   counter.set((totalCount) => totalCount + 1);
-}, [1000])
+}, 1000)
 
 function App() {
   const [ totalCount ] = statebook.useTopic('counter');
@@ -194,6 +194,11 @@ export class BinarySearchTreeTopic<T> extends Topic<BinarySearchTree<T>> {
     this.set((state) => state.insert(value)) 
   }
 }
+
+// New Custom Topic can be used in StatebookFactory
+const statebook = StatebookFactory({
+  list: new BinarySearchTreeTopic<TreeType>();
+});
 ```
 
 
