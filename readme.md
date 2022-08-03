@@ -197,7 +197,7 @@ export class BinarySearchTreeTopic<T> extends Topic<BinarySearchTree<T>> {
 
 // New Custom Topic can be used in StatebookFactory
 const statebook = StatebookFactory({
-  list: new BinarySearchTreeTopic<TreeType>();
+  list: new BinarySearchTreeTopic<NodeType>(rootNode);
 });
 ```
 
